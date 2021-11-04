@@ -11,6 +11,11 @@ type Props = {
 }
 
 export default function PaginacaoIng({listPag, changeUp, changeDown}: Props) {
+
+  if (listPag?.empty) {
+    return <div></div>
+  }
+
   return (
     <C.Container>
       <C.Preview onClick={()=> changeDown(listPag?.numberPage)} disabled={listPag?.first}>

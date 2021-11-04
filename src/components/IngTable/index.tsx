@@ -20,6 +20,14 @@ export default function IngTabel({lista, load, deleteFunc}: Props) {
       <div>Carregando...</div>
     );
   }
+
+  if (lista?.empty) {
+    return(
+      <C.Container>
+        <h1>Nenhum ingrediente cadastrado.</h1>
+      </C.Container>
+    )
+  }
   return(
     <C.Container>
       <C.TableTitle>INGREDIENTES</C.TableTitle>
