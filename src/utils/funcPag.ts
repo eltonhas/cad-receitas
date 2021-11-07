@@ -1,10 +1,5 @@
-import { Ingrediente } from './../types/ingrediente';
+import { Ingrediente } from '../types/ingrediente';
 import { Page } from '../types/page';
-
-
-export function capitalize(word: string) {
-  return word[0].toUpperCase() + word.slice(1).toLowerCase();
-}
 
 export function pagination(list: Ingrediente[]) {
 
@@ -40,10 +35,8 @@ export function pagination(list: Ingrediente[]) {
 
   list.forEach( item => {
     if (item === lastItem) {
-      console.log("Entrei aqui");
       let page: Page;
       if (content.length !== 8) {
-        console.log("Entrei aqui1");
         content = [...content, item];
         page = {
           content,
@@ -52,9 +45,7 @@ export function pagination(list: Ingrediente[]) {
           numberPage,
           totalPages
         }
-
         data = [...data, page];
-        console.log(data);
         return data;
       }
 
@@ -79,7 +70,6 @@ export function pagination(list: Ingrediente[]) {
         totalPages
       }
       data = [...data, lastPage];
-
     } else if (content.length === 8) {
       let page: Page;
       // Não é a primeira pagina
@@ -92,7 +82,6 @@ export function pagination(list: Ingrediente[]) {
           totalPages
         }
         data = [...data, page];
-        console.log("4");
       // É a primeira pagina
       } else {
         page = {
@@ -103,14 +92,12 @@ export function pagination(list: Ingrediente[]) {
           totalPages
         }
         data = [...data, page];
-        console.log("2");
       }
       content = [];
       content = [...content, item];
       numberPage += 1;
     } else if (content.length < 8) {
       content = [...content, item];
-      console.log(content);
     }
   });
 

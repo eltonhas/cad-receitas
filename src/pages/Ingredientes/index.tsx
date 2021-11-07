@@ -17,7 +17,8 @@ import { setIngrediente, getIngredientes,
         updateIngrediente
       } from "../../utils/dbIngredientes";
 
-import { capitalize, pagination } from "../../utils/outras";
+import { capitalize, verifiNumber } from "../../utils/funcEdit";
+import { pagination } from "../../utils/funcPag";
 import { Page } from '../../types/page';
 
 export default function Ingredientes() {
@@ -55,7 +56,16 @@ export default function Ingredientes() {
     setLoading(false);
   }
   function handleQtdEmb(e: ChangeEvent<HTMLInputElement>) {
-    let number = e.target.value.replace(',', '.');
+    let number = e.target.value;
+    let returnFunc = verifiNumber(number[number.length-1]);
+
+    if (returnFunc === "") {
+      number = number.slice(0, -1);
+      setQtdEmb(number);
+      return;
+    }
+
+    number = number.replace(',', '.');
     // Verificação da quantidade de pontos
     let count = number.split('.').length-1;
     if (count > 1) {
@@ -65,7 +75,16 @@ export default function Ingredientes() {
     setQtdEmb(number);
   }
   function handlePrice(e: ChangeEvent<HTMLInputElement>) {
-    let number = e.target.value.replace(',', '.');
+    let number = e.target.value;
+    let returnFunc = verifiNumber(number[number.length-1]);
+
+    if (returnFunc === "") {
+      number = number.slice(0, -1);
+      setQtdEmb(number);
+      return;
+    }
+
+    number = e.target.value.replace(',', '.');
     let count = number.split('.').length-1;
     if (count > 1) {
       number = number.slice(0, -1);
@@ -181,11 +200,11 @@ export default function Ingredientes() {
       <C.Content>
         <C.FormCad onSubmit={handleIng}>
           <C.Title>Nome</C.Title>
-          <C.InputForm type="text" value={name} onChange={e => setName(e.target.value)}/>
+          <C.InputForm type="text" value={name} onChange={e => setName(e.target.value)} placeholder='nome do ingrediente'/>
           <C.Title>Quantidade</C.Title>
-          <C.InputForm type="text" value={qtdEmb} onChange={handleQtdEmb}/>
+          <C.InputForm type="text" value={qtdEmb} onChange={handleQtdEmb} placeholder='quantidade'/>
           <C.Title>Preço</C.Title>
-          <C.InputForm type="text" value={price} onChange={handlePrice}/>
+          <C.InputForm type="text" value={price} onChange={handlePrice} placeholder='preço'/>
           <C.SelectArea>
             <C.Title>Unidade</C.Title>
             <C.SelectForm value={unit} onChange={e => setUnit(e.target.value)}>
