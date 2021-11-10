@@ -15,7 +15,7 @@ export async function setIngrediente(data: Ingrediente) {
     id: data.id,
     name: data.name,
     price: data.price,
-    qtdEmb: data.qtdEmb,
+    qtd: data.qtd,
     unit: data.unit,
   })
   .then(() => {
@@ -40,7 +40,7 @@ export async function getIngredientes() {
     let data = {
       id: ingrediente.id,
       name: ingrediente.data().name,
-      qtdEmb: ingrediente.data().qtdEmb,
+      qtd: ingrediente.data().qtd,
       price: ingrediente.data().price,
       unit: ingrediente.data().unit
     }
@@ -61,7 +61,7 @@ export async function getOneIngrediente(id: string) {
     let data: Ingrediente = {
       id: snapshot.id,
       name: snapshot.data().name,
-      qtdEmb: snapshot.data().qtdEmb,
+      qtd: snapshot.data().qtd,
       price: snapshot.data().price,
       unit: snapshot.data().unit
     }

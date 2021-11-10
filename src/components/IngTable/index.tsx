@@ -8,12 +8,13 @@ import { Page } from '../../types/page';
 
 
 type Props = {
-  lista: Page | undefined,
+  page: Page | undefined,
   load: boolean,
-  deleteFunc: (id: string) => {}
+  deleteFunc: Function,
+  origin: string,
 }
 
-export default function IngTabel({lista, load, deleteFunc}: Props) {
+export default function IngTabel({page, load, deleteFunc, origin}: Props) {
   
   if (load) {
     return (
@@ -21,7 +22,7 @@ export default function IngTabel({lista, load, deleteFunc}: Props) {
     );
   }
 
-  if (lista?.empty) {
+  if (page?.empty) {
     return(
       <C.Container>
         <h1>Nenhum ingrediente cadastrado.</h1>
@@ -34,22 +35,37 @@ export default function IngTabel({lista, load, deleteFunc}: Props) {
       <C.TableArea>
         <tbody>
         {
-          lista?.content.map((ing, index) => (
-            <C.TableLine key={index}>
-              <C.TableColumn>{ing.name}</C.TableColumn>
-              <C.TableColumn>{ing.qtdEmb}</C.TableColumn>
-              <C.TableColumn>{ing.unit}</C.TableColumn>
-              <C.TableColumn>R$ {ing.price}</C.TableColumn>
-              <C.TableColumn>
-                <Link to={`/ingredientes/${ing.id}`}>
-                  <MdEditNote size={30}/>
-                </Link>
-                <C.ExcluirButton onClick={()=> deleteFunc(ing.id)}>
-                  <MdDelete size={30}/>
-                </C.ExcluirButton>
-              </C.TableColumn>
-            </C.TableLine>
-          ))
+          origin === 'ing' ?
+            page?.content.map((ing, index) => (
+              <C.TableLine key={index}>
+                <C.TableColumn>{ing.name}</C.TableColumn>
+                <C.TableColumn>{ing.qtd}</C.TableColumn>
+                <C.TableColumn>{ing.unit}</C.TableColumn>
+                <C.TableColumn>R$ {ing.price}</C.TableColumn>
+                <C.TableColumn>
+                  <Link to={`/ingredientes/${ing.id}`}>
+                    <MdEditNote size={30}/>
+                  </Link>
+                  <C.ExcluirButton onClick={()=> deleteFunc(ing.id)}>
+                    <MdDelete size={30}/>
+                  </C.ExcluirButton>
+                </C.TableColumn>
+              </C.TableLine>
+            ))
+          :
+            page?.content.map((ing, index) => (
+              <C.TableLine key={index}>
+                <C.TableColumn>{ing.name}</C.TableColumn>
+                <C.TableColumn>{ing.qtd}</C.TableColumn>
+                <C.TableColumn>{ing.unit}</C.TableColumn>
+                <C.TableColumn>R$ {ing.price}</C.TableColumn>
+                <C.TableColumn>
+                  <C.ExcluirButton onClick={()=> deleteFunc(ing.id)}>
+                    <MdDelete size={30}/>
+                  </C.ExcluirButton>
+                </C.TableColumn>
+              </C.TableLine>
+            ))
         }
         </tbody>
         </C.TableArea>

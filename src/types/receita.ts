@@ -1,7 +1,7 @@
-import { IngredienteDetails } from "./ingredienteDetails";
+import { Ingrediente } from "./ingrediente";
 
 export type Receita = {
-  items: IngredienteDetails[],
+  items: Ingrediente[],
   salePrice: number, //Preço de venda
   unitPrice: number, // Preço unitário
   gainUnit: number, // Lucro Unitário

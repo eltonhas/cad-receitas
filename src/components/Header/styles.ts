@@ -30,5 +30,9 @@ export const ContLink = styled.div`
 `;
 export const ButtonLogout = styled.button`
   border: none;
+  background: none;
   color: #770B00;
+  &:hover {
+    color: #881717;
+  }
 `;

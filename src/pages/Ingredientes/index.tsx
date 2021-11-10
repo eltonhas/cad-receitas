@@ -9,6 +9,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import IngTabel from '../../components/IngTable';
 import PaginacaoIng from '../../components/PaginacaoIng';
+import CustonButton from '../../components/CustonButton';
 
 import { Ingrediente } from '../../types/ingrediente';
 
@@ -80,7 +81,7 @@ export default function Ingredientes() {
 
     if (returnFunc === "") {
       number = number.slice(0, -1);
-      setQtdEmb(number);
+      setPrice(number);
       return;
     }
 
@@ -96,7 +97,6 @@ export default function Ingredientes() {
 
     if (name === "" || qtdEmb === ""  || price === "") {
       alert("Existem campus sem preencher, por favor preencha todos.");
-
       return;
     }
 
@@ -109,7 +109,7 @@ export default function Ingredientes() {
       data = {
         id,
         name,
-        qtdEmb: parseFloat(qtdEmb),
+        qtd: parseFloat(qtdEmb),
         price: parseFloat(price),
         unit
       }
@@ -121,7 +121,6 @@ export default function Ingredientes() {
         history.push("/ingredientes");
       } else {
         alert("Aconteceu algum erro, tente mais tarde.");
-
       }
 
     } else {
@@ -130,7 +129,6 @@ export default function Ingredientes() {
 
       if (filtro.length !== 0) {
         alert("Já existe um produto cadastrado com esse nome");
-
         return;
       }
 
@@ -138,7 +136,7 @@ export default function Ingredientes() {
       data = {
         id: idIng,
         name: nameCap,
-        qtdEmb: parseFloat(qtdEmb),
+        qtd: parseFloat(qtdEmb),
         price: parseFloat(price),
         unit
       }
@@ -157,9 +155,7 @@ export default function Ingredientes() {
       setQtdEmb('');
       setPrice('');
       setUnit('g');
-
     }
-
   }
   async function handleDelete(id: string){
     let datas = ingList;
@@ -180,7 +176,7 @@ export default function Ingredientes() {
 
     if (typeof returnQuery === "object" && returnQuery !== null) {
       setName(returnQuery.name);
-      setQtdEmb(returnQuery.qtdEmb.toString());
+      setQtdEmb(returnQuery.qtd.toString());
       setPrice(returnQuery.price.toString());
       setUnit(returnQuery.unit);
     }
@@ -213,10 +209,10 @@ export default function Ingredientes() {
               <option value="unid">unidades</option>
             </C.SelectForm>
           </C.SelectArea>
-          <C.InputButton>{id ? "EDITAR" : "CADASTRAR"}</C.InputButton>
+          <CustonButton label={id ? "EDITAR" : "CADASTRAR"}/>
         </C.FormCad>
         <C.TableArea>
-          <IngTabel lista={activePage} load={loading} deleteFunc={handleDelete}/>
+          <IngTabel page={activePage} load={loading} deleteFunc={handleDelete} origin='ing'/>
           <PaginacaoIng listPag={activePage} changeUp={changePageUp} changeDown={changePageDown}/>
         </C.TableArea>
       </C.Content>

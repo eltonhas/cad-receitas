@@ -23,13 +23,33 @@ export function pagination(list: Ingrediente[]) {
     return data;
   }
 
+  if (totalItens <= 8) {
+    list.forEach( item => (
+      content = [...content, item]
+    ))
+    
+    let page: Page;
+    page = {
+      content,
+      first: true,
+      last: true,
+      numberPage,
+      totalPages: 1
+    }
+    data = [...data, page];
+    console.log("length !== 8 &&",data);
+    return data;
+
+  }
+
   const division = (totalItens)/8;
-  let totalPages = parseFloat(division.toFixed(0));
+  let totalPages = parseInt(division.toString());
+  console.log(division)
+  console.log(totalPages)
 
   if (division - totalPages !== 0) {
     totalPages += 1;
   }
-
 
   const lastItem = list[list.length-1];
 
@@ -100,6 +120,5 @@ export function pagination(list: Ingrediente[]) {
       content = [...content, item];
     }
   });
-
   return data;
 }

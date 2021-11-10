@@ -18,12 +18,11 @@ export const Content = styled.div`
   align-items: start;
   flex-direction: row;
 `;
-export const IngForm = styled.div`
+export const IngForm = styled.form`
   width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
   padding: 10px;
 `;
 export const TitleArea = styled.div`
@@ -46,7 +45,7 @@ export const SelectIng = styled.select`
   height: 30px;
   margin-bottom: 10px;
 `;
-export const InputQtd = styled.input`
+export const Input = styled.input`
   font-size: 20px;
   padding: 10px 5px;
   width: 90%;
@@ -54,33 +53,19 @@ export const InputQtd = styled.input`
   border-radius: 5px;
   margin-bottom: 10px;
 `;
-export const ButtonIng = styled.button`
-  margin-top: 20px;
-  height: 50px;
-  width: 90%;
-  border-radius: 50px;
-  background: #770B00;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 500;
-  
-  &:hover {
-    background: #881717;
-  }
-`;
-export const InfoForm = styled.div`
+export const InfoForm = styled.form`
   width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid green;
+  padding: 10px;
 `;
 export const TableArea = styled.div`
   width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
+  padding: 10px;
 `;
 
 export const FooterArea = styled.div`

@@ -1,7 +1,7 @@
 export type Ingrediente = {
   id: string,
   name: string,
-  qtdEmb: number,
+  qtd: number,
   price: number,
   unit: string
 }
