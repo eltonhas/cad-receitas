@@ -10,10 +10,11 @@ type Props = {
   unitV: number,
   Sprice: number,
   Rend: number,
-  PorcWin: number
+  PorcWin: number,
+  deleteFunc: Function
 }
 
-export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin} : Props) {
+export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin, deleteFunc} : Props) {
   return(
     <C.Container>
       <C.TitleCard>{name}</C.TitleCard>
@@ -36,7 +37,7 @@ export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin} : P
         <C.EditLink>
           <Link to={`/receitas/${id}`}><MdEditNote size={30}/></Link>
         </C.EditLink>
-        <C.ExcluirLink><MdDelete size={25}/></C.ExcluirLink>
+        <C.ExcluirButton onClick={()=> deleteFunc(id)}><MdDelete size={25}/></C.ExcluirButton>
       </C.LinkArea>
     </C.Container>
   );

@@ -65,7 +65,7 @@ export const EditLink = styled.div`
     }
   }
 `;
-export const ExcluirLink = styled.button`
+export const ExcluirButton = styled.button`
   border: none;
   background: none;
   color: #881717;

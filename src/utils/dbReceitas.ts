@@ -101,3 +101,16 @@ export async function updateReceita(data: Receita) {
 
   return 0;
 }
+
+export async function deleteReceita(id: string) {
+
+  const docRef = doc(RECEITAS, id);
+
+  await deleteDoc(docRef)
+  .catch(e => {
+    console.log(e);
+    return 1;
+  });
+
+  return 0;
+}

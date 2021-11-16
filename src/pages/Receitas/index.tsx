@@ -59,6 +59,7 @@ export default function Receitas() {
     setListIng(ingredientes);
     setLoading(false);
   }
+
   async function getReceitaToEdit(id: string) {
     setLoading(true);
     const returnQuery = await getOneReceita(id);
@@ -78,6 +79,7 @@ export default function Receitas() {
       setLoading(false);
     }
   }
+
   function handleIng(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (qtdIng === "" || ing === "") {
@@ -110,6 +112,7 @@ export default function Receitas() {
     setIng('');
     setQtdIng('');
   }
+
   async function handleReceita(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -197,6 +200,17 @@ export default function Receitas() {
         });
       }
     }
+  }
+
+  function handleDelete(id: string) {
+    setLoadingHandle(true);
+    const filtro = listIngRec.filter(ing => id !== ing.id);
+    setListIngRec(filtro);
+
+    const pages = pagination(filtro);
+    setListPagination(pages);
+    setActivePage(pages[0]);
+    setLoadingHandle(false);
   }
 
   function handleQtd(e: ChangeEvent<HTMLInputElement>) {
@@ -288,17 +302,6 @@ export default function Receitas() {
   function handleName(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.value;
     setNameRec(name);
-  }
-
-  function handleDelete(id: string) {
-    setLoadingHandle(true);
-    const filtro = listIngRec.filter(ing => id !== ing.id);
-    setListIngRec(filtro);
-
-    const pages = pagination(filtro);
-    setListPagination(pages);
-    setActivePage(pages[0]);
-    setLoadingHandle(false);
   }
 
   function changePageUp(page: number) {

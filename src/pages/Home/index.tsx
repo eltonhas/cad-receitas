@@ -8,7 +8,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CardReceita from '../../components/CardReceita';
 
-import { getReceitas } from "../../utils/dbReceitas";
+import { getReceitas, deleteReceita } from "../../utils/dbReceitas";
 
 export default function Home() {
 
@@ -24,6 +24,19 @@ export default function Home() {
     const receitas = await getReceitas();
     setListRec(receitas);
     setLoading(false);
+  }
+
+  async function handleDelete(id: string) {
+    const returnQuery = await deleteReceita(id);
+
+    if (returnQuery === 0) {
+      let data = listRec;
+
+      const filter = data.filter(rec => id !== rec.id);
+      setListRec(filter);
+    } else {
+      alert("Alguma coisa deu errado, tente mais tarde.");
+    }
   }
 
   return (
@@ -42,6 +55,7 @@ export default function Home() {
                 Sprice={receita.salePrice} 
                 Rend={receita.yield} 
                 PorcWin={receita.gainPorc}
+                deleteFunc={handleDelete}
               />
             ))
           )
