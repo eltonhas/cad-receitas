@@ -37,7 +37,6 @@ export default function Ingredientes() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log("UseEffect");
 
     loadingIngredientes();
 

@@ -56,21 +56,19 @@ export async function getOneIngrediente(id: string) {
   const docRef = doc(INGREDIENTES, id);
 
   const snapshot = await getDoc(docRef);
-
+  let data: Ingrediente;
   if (snapshot.exists()) {
-    let data: Ingrediente = {
+    data = {
       id: snapshot.id,
       name: snapshot.data().name,
       qtd: snapshot.data().qtd,
       price: snapshot.data().price,
       unit: snapshot.data().unit
     }
-
-    return data;
   } else {
     return 1;
   }
-
+  return data;
 }
 
 export async function deleteIngrediente(id: string) {
