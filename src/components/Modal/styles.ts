@@ -13,7 +13,7 @@ export const Modal = styled.div`
 export const Container = styled.div`
   position: fixed;
   max-width: 900px;
-  max-height: 500px;
+  max-height: 550px;
   top: 15%;
   left: 0;
   right: 0;
@@ -45,6 +45,25 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   align-items: start;
+`;
+
+export const TitleIng = styled.div`
+  width: 100%;
+  border-bottom: 3px solid #774000;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  h3 {
+    position: relative;
+    top: 20px;
+    background: #FFF;
+    padding: 0 20px;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    color: #7E3F3F;
+  }  
 `;
 
 export const ContentLeft = styled.div`

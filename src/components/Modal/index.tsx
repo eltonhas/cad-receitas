@@ -59,6 +59,9 @@ export default function Modal({closeModal, detail}: Props) {
     <C.Modal>
       <C.Container>
         <C.Close onClick={closeModal}><FiX size={23}/>Voltar</C.Close>
+        <C.TitleIng>
+          <h3>{detail.name}</h3>
+        </C.TitleIng>
         <C.Content>
           <C.ContentLeft>
             <IngTabel origin="modal" page={activePage} load={loadingHandle} deleteFunc={delOff}/>

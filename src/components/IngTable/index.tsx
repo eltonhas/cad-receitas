@@ -53,7 +53,7 @@ export default function IngTabel({page, load, deleteFunc, origin}: Props) {
               </C.TableLine>
             ))
           : (
-              origin === 'ing' ? 
+              origin === 'rec' ? 
                 page?.content.map((ing, index) => (
                   <C.TableLine key={index}>
                     <C.TableColumn>{ing.name}</C.TableColumn>
