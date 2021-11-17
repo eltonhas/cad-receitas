@@ -51,7 +51,7 @@ export const Input = styled.input`
   width: 90%;
   border: 0;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 `;
 export const InfoForm = styled.form`
   width: 25%;

@@ -45,7 +45,7 @@ export const LinkArea = styled.div`
   flex-direction: row;
   justify-content: space-around;
 `;
-export const OpenLink = styled.button`
+export const OpenButton = styled.button`
   border: none;
   background: none;
   color: #774000;

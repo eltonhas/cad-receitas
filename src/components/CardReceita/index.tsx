@@ -11,10 +11,11 @@ type Props = {
   Sprice: number,
   Rend: number,
   PorcWin: number,
-  deleteFunc: Function
+  deleteFunc: (id: string)=> void,
+  openModal: (id: string)=> void
 }
 
-export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin, deleteFunc} : Props) {
+export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin, deleteFunc, openModal} : Props) {
   return(
     <C.Container>
       <C.TitleCard>{name}</C.TitleCard>
@@ -33,7 +34,7 @@ export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin, del
         </C.CardRight>
       </C.ContentCard>
       <C.LinkArea>
-        <C.OpenLink><MdOpenInBrowser size={25}/></C.OpenLink>
+        <C.OpenButton onClick={()=> openModal(id)}><MdOpenInBrowser size={25}/></C.OpenButton>
         <C.EditLink>
           <Link to={`/receitas/${id}`}><MdEditNote size={30}/></Link>
         </C.EditLink>

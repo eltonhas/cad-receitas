@@ -52,20 +52,31 @@ export default function IngTabel({page, load, deleteFunc, origin}: Props) {
                 </C.TableColumn>
               </C.TableLine>
             ))
-          :
-            page?.content.map((ing, index) => (
-              <C.TableLine key={index}>
-                <C.TableColumn>{ing.name}</C.TableColumn>
-                <C.TableColumn>{ing.qtd}</C.TableColumn>
-                <C.TableColumn>{ing.unit}</C.TableColumn>
-                <C.TableColumn>R$ {ing.price}</C.TableColumn>
-                <C.TableColumn>
-                  <C.ExcluirButton onClick={()=> deleteFunc(ing.id)}>
-                    <MdDelete size={30}/>
-                  </C.ExcluirButton>
-                </C.TableColumn>
-              </C.TableLine>
-            ))
+          : (
+              origin === 'ing' ? 
+                page?.content.map((ing, index) => (
+                  <C.TableLine key={index}>
+                    <C.TableColumn>{ing.name}</C.TableColumn>
+                    <C.TableColumn>{ing.qtd}</C.TableColumn>
+                    <C.TableColumn>{ing.unit}</C.TableColumn>
+                    <C.TableColumn>R$ {ing.price}</C.TableColumn>
+                    <C.TableColumn>
+                      <C.ExcluirButton onClick={()=> deleteFunc(ing.id)}>
+                        <MdDelete size={30}/>
+                      </C.ExcluirButton>
+                    </C.TableColumn>
+                  </C.TableLine>
+                ))
+              :    
+                page?.content.map((ing, index) => (
+                  <C.TableLine key={index}>
+                    <C.TableColumn>{ing.name}</C.TableColumn>
+                    <C.TableColumn>{ing.qtd}</C.TableColumn>
+                    <C.TableColumn>{ing.unit}</C.TableColumn>
+                    <C.TableColumn>R$ {ing.price}</C.TableColumn>
+                  </C.TableLine>
+                ))
+            )
         }
         </tbody>
         </C.TableArea>

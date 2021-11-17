@@ -7,13 +7,29 @@ import { Receita } from "../../types/receita";
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CardReceita from '../../components/CardReceita';
+import Modal from '../../components/Modal';
 
 import { getReceitas, deleteReceita } from "../../utils/dbReceitas";
 
 export default function Home() {
 
   const [loading, setLoading] = useState(false);
+  const [showPostModal, setShowPostModal] = useState(false);
   const [listRec, setListRec] = useState<Receita[]>([]);
+  const [detailsRec, setDetailsRec] = useState<Receita>({
+    id: "",
+    items: [],
+    name: "",
+    salePrice: 0,
+    unitPrice: 0,
+    gainUnit: 0,
+    yield: 0,
+    ingCost: 0,
+    addCost: 0,
+    allCost: 0,
+    gainPorc: 0,
+    allGain: 0
+  });
 
   useEffect(() => {
     loadingReceitas();
@@ -39,6 +55,14 @@ export default function Home() {
     }
   }
 
+  function togglePostModal(id?: string ) {
+    if (id) {
+      const filter = listRec.filter(rec => id === rec.id);
+      setDetailsRec(filter[0]);
+    }
+    setShowPostModal(!showPostModal);
+  }
+
   return (
     <C.Container>
       <Header item='home'/>
@@ -49,6 +73,7 @@ export default function Home() {
             listRec.length === 0 ? <C.Info>Sem receitas cadastradas</C.Info> :
             listRec.map( (receita, index) => (
               <CardReceita
+                key={index}
                 id={receita.id}
                 name={receita.name}
                 unitV={receita.unitPrice} 
@@ -56,10 +81,17 @@ export default function Home() {
                 Rend={receita.yield} 
                 PorcWin={receita.gainPorc}
                 deleteFunc={handleDelete}
+                openModal={togglePostModal}
               />
             ))
           )
-
+        }
+        {
+          showPostModal &&
+          <Modal
+            detail={detailsRec}
+            closeModal={togglePostModal}
+          />
         }
       </C.Content>
       <C.FooterArea>
