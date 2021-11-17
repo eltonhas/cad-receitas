@@ -21,6 +21,7 @@
 firebase.json
 firestore.indexes.json
 firestore.rules
+.firebaserc
 
 npm-debug.log*
 yarn-debug.log*
