@@ -15,10 +15,18 @@ type Props = {
   openModal: (id: string)=> void
 }
 
+function diminuirNome(name: string) {
+  return name.slice(0, 21);
+}
+
 export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin, deleteFunc, openModal} : Props) {
   return(
     <C.Container>
-      <C.TitleCard>{name}</C.TitleCard>
+      <C.TitleCard>{
+        name.length >= 20 ?
+          diminuirNome(name) :
+          name
+      }</C.TitleCard>
       <C.ContentCard>
         <C.CardLeft>
           <C.TitleInfo>Valor unitário</C.TitleInfo>
@@ -28,7 +36,7 @@ export default function CardReceita({id, name, unitV, Sprice, Rend, PorcWin, del
         </C.CardLeft>
         <C.CardRight>
         <C.TitleInfo>Rendimento</C.TitleInfo>
-          <C.Info>{Rend} unidades</C.Info>
+          <C.Info>{Rend} {Rend == 1 ? 'unidade' : 'unidades'}</C.Info>
           <C.TitleInfo>Porc. de ganho</C.TitleInfo>
           <C.Info>{PorcWin}%</C.Info>
         </C.CardRight>

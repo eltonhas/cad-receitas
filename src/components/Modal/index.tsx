@@ -74,7 +74,7 @@ export default function Modal({closeModal, detail}: Props) {
             <C.InfoText>Lucro Unitário: R$ {detail.gainUnit}</C.InfoText>
             <C.InfoText>Rendimento: {detail.yield} unid</C.InfoText>
             <C.InfoText>Custo total: R$ {detail.allCost}</C.InfoText>
-            <C.InfoText>Custo Ingr: R$ {detail.ingCost}</C.InfoText>
+            <C.InfoText>Custo Ingr: R$ {detail.ingCost.toFixed(2)}</C.InfoText>
             <C.InfoText>Custos add: R$ {detail.addCost}</C.InfoText>
             <C.InfoText>Porcent. lucro: {detail.gainPorc}%</C.InfoText>
             <C.InfoText>Lucro receita: R$ {detail.allGain}</C.InfoText>
